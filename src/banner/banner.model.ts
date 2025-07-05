@@ -5,8 +5,11 @@ export class Banner {
   @Field(() => ID)
   id: number;
 
+  @Field(() => ID)
+  storeId: number;
+
   @Field(() => Int)
-  order: string;
+  order: number;
 
   @Field()
   imageUrl: string;
@@ -29,8 +32,11 @@ export class BannerInput {
   @Field(() => ID)
   id: number;
 
+  @Field(() => ID)
+  storeId: number;
+
   @Field(() => Int)
-  order: string;
+  order: number;
 
   @Field()
   imageUrl: string;

@@ -21,6 +21,7 @@ scalar DateTime
 
 type Banner {
   id: ID!
+  storeId: ID!
   order: Int!
   imageUrl: String!
   boardId: ID
@@ -72,6 +73,7 @@ input UserAccountInput {
 
 input BannerInput {
   id: ID!
+  storeId: ID!
   order: Int!
   imageUrl: String!
   boardId: ID
