@@ -19,6 +19,16 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Banner {
+  id: ID!
+  order: Int!
+  imageUrl: String!
+  boardId: ID
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  reservedAt: DateTime
+}
+
 type Payload {
   accessToken: String!
   refreshToken: String!
@@ -33,6 +43,7 @@ type Query {
   getUserAccountByPhone(phone: String!): UserAccount!
   validateOtp(phone: String!, otp: String!): Boolean!
   getValidOtpTime: Int!
+  getBanners: [Banner!]!
   getAuthenticationToken(phone: String!): Payload!
 }
 
@@ -40,6 +51,9 @@ type Mutation {
   createUserAccount(userAccount: UserAccountInput!): UserAccount!
   updateUserAccount(userAccount: UserAccountInput!): UserAccount!
   sendOtp(phone: String!): Boolean!
+  createBanner(banner: BannerInput!): Banner!
+  updateBanner(banner: BannerInput!): Banner!
+  deleteBanner(id: Float!): Float!
   refreshAuthenticationToken(refreshToken: String!): Payload!
   signInByPhone(phone: String!): Payload!
 }
@@ -54,4 +68,14 @@ input UserAccountInput {
   loginedAt: DateTime
   createdAt: DateTime!
   updatedAt: DateTime!
+}
+
+input BannerInput {
+  id: ID!
+  order: Int!
+  imageUrl: String!
+  boardId: ID
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  reservedAt: DateTime
 }

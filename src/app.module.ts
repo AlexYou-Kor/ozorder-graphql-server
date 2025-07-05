@@ -11,6 +11,7 @@ import { UserAccountModule } from './userAccount/userAccount.module';
 import { UserAccountTokenModule } from './userAccountToken/userAccountToken.module';
 import { UserAccountOtpModule } from './userAccountOtp/userAccountOtp.module';
 import { ResponseLoggingInterceptor } from './responseLogger.interceptor';
+import { BannerModule } from './banner/banner.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 
 @Module({
@@ -24,6 +25,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
     UserAccountModule,
     UserAccountTokenModule,
     UserAccountOtpModule,
+    BannerModule,
     AuthenticationModule,
   ],
   providers: [
