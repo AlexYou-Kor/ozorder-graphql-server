@@ -13,6 +13,8 @@ import { UserAccountOtpModule } from './userAccountOtp/userAccountOtp.module';
 import { ResponseLoggingInterceptor } from './responseLogger.interceptor';
 import { BannerModule } from './banner/banner.module';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { GlobalCustomerModule } from './globalCustomer/globalCustomer.module';
+import { StoreCustomerModule } from './storeCustomer/storeCustomer.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { AuthenticationModule } from './authentication/authentication.module';
     UserAccountTokenModule,
     UserAccountOtpModule,
     BannerModule,
+    GlobalCustomerModule,
+    StoreCustomerModule,
     AuthenticationModule,
   ],
   providers: [

@@ -19,6 +19,7 @@ export class AuthGuard implements CanActivate {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
     const request = _context.getContext().req;
     const token = this.extractTokenFromHeader(request);
+    console.log(token);
     if (!token) {
       throw new UnauthorizedException();
     }
@@ -34,7 +35,7 @@ export class AuthGuard implements CanActivate {
         throw new Error('expired');
       }
     } catch (error) {
-      if (error instanceof Error && error.message === 'expired') {
+      if (error instanceof Error && error.message.includes('expired')) {
         throw new Error('TokenExpired');
       }
       throw new UnauthorizedException();

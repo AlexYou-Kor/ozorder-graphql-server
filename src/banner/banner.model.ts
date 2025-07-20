@@ -15,7 +15,7 @@ export class Banner {
   imageUrl: string;
 
   @Field(() => ID, { nullable: true })
-  boardId?: string;
+  boardId?: number;
 
   @Field()
   createdAt: Date;
@@ -24,7 +24,7 @@ export class Banner {
   updatedAt: Date;
 
   @Field({ nullable: true })
-  reservedAt: Date;
+  reservedAt?: Date;
 }
 
 @InputType()
@@ -42,7 +42,7 @@ export class BannerInput {
   imageUrl: string;
 
   @Field(() => ID, { nullable: true })
-  boardId?: string;
+  boardId?: number;
 
   @Field()
   createdAt: Date;
@@ -51,5 +51,5 @@ export class BannerInput {
   updatedAt: Date;
 
   @Field({ nullable: true })
-  reservedAt: Date;
+  reservedAt?: Date;
 }
