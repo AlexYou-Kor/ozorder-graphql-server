@@ -38,6 +38,54 @@ type Payload {
   expiresIn: Float!
 }
 
+type Agreements {
+  privacy: Boolean!
+  provider: Boolean!
+}
+
+type GlobalCustomer {
+  id: ID!
+  userId: ID!
+  ident: String!
+  identType: String!
+  name: String!
+  phone: String!
+  email: String!
+  birth: String!
+  agreements: Agreements!
+  gender: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type CustomerPoint {
+  saved: Int!
+  used: Int!
+}
+
+type LocationCustomer {
+  id: ID!
+  locationId: ID!
+  note: String
+  point: CustomerPoint!
+  registeredAt: DateTime!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type StoreCustomer {
+  id: ID!
+  globalCustomerId: ID!
+  customer: GlobalCustomer!
+  storeId: ID!
+  locationId: ID!
+  point: CustomerPoint!
+  locations: [LocationCustomer!]!
+  registeredAt: DateTime!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 type Query {
   healthCheck: Boolean!
   getUserAccountsByPhone(phone: String!): [UserAccount!]!
@@ -45,6 +93,10 @@ type Query {
   validateOtp(phone: String!, otp: String!): Boolean!
   getValidOtpTime: Int!
   getBanners: [Banner!]!
+  getGlobalCustomerByPhone(phone: String!): GlobalCustomer!
+  getStoreCustomerByPhone(phone: String!): StoreCustomer!
+  getStoreCustomerById(id: Float!): StoreCustomer!
+  getStoreCustomerByUserId(userId: Int!): StoreCustomer!
   getAuthenticationToken(phone: String!): Payload!
 }
 

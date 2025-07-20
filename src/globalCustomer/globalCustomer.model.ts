@@ -14,6 +14,9 @@ export class GlobalCustomer {
   @Field(() => ID)
   id: number;
 
+  @Field(() => ID)
+  userId: number;
+
   @Field()
   ident: string;
 
@@ -32,7 +35,7 @@ export class GlobalCustomer {
   @Field()
   birth: string;
 
-  @Field()
+  @Field(() => Agreements)
   agreements: Agreements;
 
   @Field()
