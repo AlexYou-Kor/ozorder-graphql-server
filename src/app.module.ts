@@ -15,6 +15,7 @@ import { BannerModule } from './banner/banner.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { GlobalCustomerModule } from './globalCustomer/globalCustomer.module';
 import { StoreCustomerModule } from './storeCustomer/storeCustomer.module';
+import { CouponModule } from './coupon/coupon.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { StoreCustomerModule } from './storeCustomer/storeCustomer.module';
     BannerModule,
     GlobalCustomerModule,
     StoreCustomerModule,
+    CouponModule,
     AuthenticationModule,
   ],
   providers: [

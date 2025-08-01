@@ -86,6 +86,28 @@ type StoreCustomer {
   updatedAt: DateTime!
 }
 
+type Coupon {
+  id: ID!
+  storeId: ID!
+  locationId: ID
+  globalCustomerId: ID
+  name: String!
+  barcode: String
+  type: String!
+  conditionType: String
+  conditionAmount: Int
+  conditionItems: [ID]
+  conditionItemsOperator: String
+  discountMethod: String!
+  discountValue: Int!
+  applyScope: String!
+  applyItemId: ID
+  startDate: DateTime
+  endDate: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 type Query {
   healthCheck: Boolean!
   getUserAccountsByPhone(phone: String!): [UserAccount!]!
@@ -97,6 +119,7 @@ type Query {
   getStoreCustomerByPhone(phone: String!): StoreCustomer!
   getStoreCustomerById(id: Float!): StoreCustomer!
   getStoreCustomerByUserId(userId: Int!): StoreCustomer!
+  getCouponsByGlobalCustomerId(customerId: Int!): [Coupon!]!
   getAuthenticationToken(phone: String!): Payload!
 }
 
