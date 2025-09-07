@@ -7,33 +7,38 @@ export class BannerService {
     const banners = [
       {
         id: 1,
-        storeId: 1,
         order: 1,
         imageUrl:
           'https://consumer-rn-dev.s3.ap-northeast-2.amazonaws.com/public/1/banner_1.jpg',
         createdAt: new Date(),
+        linkUrl: 'https://google.com',
         updatedAt: new Date(),
         reservedAt: new Date(),
       },
       {
         id: 2,
-        storeId: 1,
         order: 2,
         imageUrl:
-          'https://consumer-rn-dev.s3.ap-northeast-2.amazonaws.com/public/1/banner_2.jpg',
+          'https://consumer-rn-dev.s3.ap-northeast-2.amazonaws.com/public/1/banner_3.jpg',
         createdAt: new Date(),
         updatedAt: new Date(),
         reservedAt: new Date(),
       },
       {
         id: 3,
-        storeId: 1,
+        order: 2,
+        imageUrl:
+          'https://consumer-rn-dev.s3.ap-northeast-2.amazonaws.com/public/1/banner_2.jpg',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: 4,
         order: 3,
         imageUrl:
           'https://consumer-rn-dev.s3.ap-northeast-2.amazonaws.com/public/1/banner_3.jpg',
         createdAt: new Date(),
         updatedAt: new Date(),
-        reservedAt: new Date(),
       },
     ] as Banner[];
     return banners;

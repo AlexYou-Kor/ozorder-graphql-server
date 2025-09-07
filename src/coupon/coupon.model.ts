@@ -9,31 +9,34 @@ export class Coupon {
   storeId: number;
 
   @Field(() => ID, { nullable: true })
-  locationId: number;
+  locationId?: number;
 
   @Field(() => ID, { nullable: true })
-  globalCustomerId: number;
+  storeCustomerId?: number;
+
+  @Field(() => ID, { nullable: true })
+  globalCustomerId?: number;
 
   @Field()
   name: string;
 
   @Field({ nullable: true })
-  barcode: string;
+  barcode?: string;
 
   @Field()
   type: 'auto' | 'general' | 'manual';
 
   @Field({ nullable: true })
-  conditionType: 'product' | 'amount' | 'barcode';
+  conditionType?: 'product' | 'amount' | 'barcode';
 
   @Field(() => Int, { nullable: true })
-  conditionAmount: number;
+  conditionAmount?: number;
 
   @Field(() => [ID], { nullable: 'itemsAndList' })
-  conditionItems: number[];
+  conditionItems?: number[];
 
   @Field({ nullable: true })
-  conditionItemsOperator: 'and' | 'or';
+  conditionItemsOperator?: 'and' | 'or';
 
   @Field()
   discountMethod: 'amount' | 'rate';
@@ -45,13 +48,13 @@ export class Coupon {
   applyScope: 'category' | 'product' | 'all';
 
   @Field(() => ID, { nullable: true })
-  applyItemId: number;
+  applyItemId?: number;
 
   @Field({ nullable: true })
-  startDate: Date;
+  startDate?: Date;
 
   @Field({ nullable: true })
-  endDate: Date;
+  endDate?: Date;
 
   @Field()
   createdAt: Date;

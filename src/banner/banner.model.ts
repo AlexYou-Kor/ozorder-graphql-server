@@ -5,9 +5,6 @@ export class Banner {
   @Field(() => ID)
   id: number;
 
-  @Field(() => ID)
-  storeId: number;
-
   @Field(() => Int)
   order: number;
 
@@ -15,7 +12,7 @@ export class Banner {
   imageUrl: string;
 
   @Field(() => ID, { nullable: true })
-  boardId?: number;
+  linkUrl?: string;
 
   @Field()
   createdAt: Date;
@@ -32,9 +29,6 @@ export class BannerInput {
   @Field(() => ID)
   id: number;
 
-  @Field(() => ID)
-  storeId: number;
-
   @Field(() => Int)
   order: number;
 
@@ -42,7 +36,7 @@ export class BannerInput {
   imageUrl: string;
 
   @Field(() => ID, { nullable: true })
-  boardId?: number;
+  linkUrl?: string;
 
   @Field()
   createdAt: Date;

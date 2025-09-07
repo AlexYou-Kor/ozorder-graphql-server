@@ -1,4 +1,4 @@
-import { Args, Int, Query, Resolver } from '@nestjs/graphql';
+import { Args, ID, Query, Resolver } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 
 import { AuthGuard } from 'src/authentication/authentication.guard';
@@ -12,7 +12,7 @@ export class CouponResolver {
 
   @Query(() => [Coupon])
   getCouponsByGlobalCustomerId(
-    @Args({ name: 'customerId', type: () => Int }) customerId: number,
+    @Args({ name: 'customerId', type: () => ID }) customerId: number,
   ): Coupon[] {
     return this.couponService.getCouponsByGlobalCustomerId(customerId);
   }

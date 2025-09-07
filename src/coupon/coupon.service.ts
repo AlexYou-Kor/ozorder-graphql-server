@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+
 import { Coupon } from './coupon.model';
 
 @Injectable()
@@ -8,6 +9,7 @@ export class CouponService {
       {
         id: 1,
         storeId: 1,
+        storeCustomerId: 1,
         globalCustomerId: customerId,
         name: '아메리카노 10% 할인',
         barcode: '1234567890128',
@@ -22,7 +24,8 @@ export class CouponService {
       },
       {
         id: 2,
-        storeId: 1,
+        storeId: 2,
+        storeCustomerId: 2,
         globalCustomerId: customerId,
         name: '아메리카노 1000원 할인',
         barcode: '2345678901234',

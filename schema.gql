@@ -21,10 +21,9 @@ scalar DateTime
 
 type Banner {
   id: ID!
-  storeId: ID!
   order: Int!
   imageUrl: String!
-  boardId: ID
+  linkUrl: ID
   createdAt: DateTime!
   updatedAt: DateTime!
   reservedAt: DateTime
@@ -58,16 +57,10 @@ type GlobalCustomer {
   updatedAt: DateTime!
 }
 
-type CustomerPoint {
-  saved: Int!
-  used: Int!
-}
-
 type LocationCustomer {
   id: ID!
   locationId: ID!
   note: String
-  point: CustomerPoint!
   registeredAt: DateTime!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -79,7 +72,6 @@ type StoreCustomer {
   customer: GlobalCustomer!
   storeId: ID!
   locationId: ID!
-  point: CustomerPoint!
   locations: [LocationCustomer!]!
   registeredAt: DateTime!
   createdAt: DateTime!
@@ -90,6 +82,7 @@ type Coupon {
   id: ID!
   storeId: ID!
   locationId: ID
+  storeCustomerId: ID
   globalCustomerId: ID
   name: String!
   barcode: String
@@ -108,6 +101,245 @@ type Coupon {
   updatedAt: DateTime!
 }
 
+type BusinessHour {
+  id: ID!
+  locationId: ID!
+  sun: JSON
+  mon: JSON
+  tue: JSON
+  wed: JSON
+  thu: JSON
+  fri: JSON
+  sat: JSON
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type Location {
+  id: ID!
+  storeId: ID!
+  name: String!
+  phone: String!
+  email: String
+  representative: String!
+  businessHour: BusinessHour
+  businessNumber: String
+  address: String!
+  zip: String!
+  lat: Float!
+  lng: Float!
+  seat: Int
+  parking: Int
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type LoyaltyConditionExcludeProduct {
+  loyaltyConditionId: ID!
+  productId: ID!
+}
+
+type LoyaltyCondition {
+  id: ID!
+  loyaltyId: ID!
+  minAmount: Int
+  perAmount: Int
+  minTime: Int
+  rate: Float
+  expirationPeriod: Int
+  excludeProdIds: [LoyaltyConditionExcludeProduct]
+}
+
+type LoyaltyItem {
+  id: ID!
+  loyaltyId: ID!
+  type: String!
+  name: String!
+  parentId: ID
+  rate: Int
+  point: Int
+  amount: Int
+}
+
+type LoyaltyReward {
+  id: ID!
+  loyaltyId: ID!
+  requirePoint: Int
+  minUsePoint: Int
+}
+
+type LoyaltyIncentive {
+  id: ID!
+  loyaltyId: ID!
+  birth: Boolean
+  birthPoint: Int
+}
+
+type Loyalty {
+  id: ID!
+  storeId: ID!
+  status: String!
+  type: String!
+  conditionType: String!
+  conditionSubType: String
+  rewardType: String!
+  condition: LoyaltyCondition
+  conditionItems: [LoyaltyItem]
+  reward: LoyaltyReward
+  rewardItems: [LoyaltyItem]
+  incentive: LoyaltyIncentive
+}
+
+type StorePolicy {
+  id: ID!
+  storeId: ID!
+  multiLocation: Boolean!
+}
+
+type Store {
+  id: ID!
+  name: String!
+  phone: String!
+  email: String!
+  representative: String!
+  businessType: String
+  businessNumber: String!
+  address: String
+  zip: String
+  logo: String
+  policy: StorePolicy
+  loyalty: Loyalty
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type OrderItem {
+  id: ID!
+  orderId: ID!
+  type: String!
+  categories: JSON
+  modifiers: [OrderModifierItem!]
+  productId: ID
+  skuId: ID
+  name: String!
+  amount: Int!
+  price: Int!
+  quantity: Int!
+  tax: Int
+  diningOption: String!
+  couponId: ID
+  referType: String
+  referId: ID
+  discountMethod: String
+  discountValue: Int
+  point: Int
+  createdAt: DateTime!
+}
+
+type OrderModifierItem {
+  id: ID!
+  orderItemId: ID!
+  modifierId: ID!
+  name: String!
+  amount: Int!
+  price: Int!
+  quantity: Int!
+  tax: Int
+}
+
+type Charge {
+  id: ID!
+  orderId: ID!
+  method: String!
+  amount: Int!
+  amountRefunded: Int
+  tax: Int
+  request: String
+  ident: String
+  installment: Int
+  approver: String
+  acquirerCode: String
+  acquirerName: String
+  approvalDate: DateTime
+  approvalNumber: String
+  signature: String
+  refunds: [Refund]
+}
+
+type Refund {
+  id: ID!
+  chargeId: ID!
+  method: String!
+  amount: Int!
+  tax: Int
+  approvalNumber: String
+  approvalDate: DateTime
+  reason: String
+  signature: String
+  createdAt: DateTime!
+}
+
+type Order {
+  id: ID!
+  storeId: ID!
+  locationId: ID!
+  numberPrefix: String
+  number: Int!
+  amount: Int!
+  amountRefunded: Int
+  discountAmount: Int
+  customerId: ID!
+  storeCustomerId: ID!
+  state: String!
+  tax: Int
+  quantity: Int!
+  diningOption: String!
+  diningState: String!
+  phone: String
+  deviceId: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  paidAt: DateTime
+  refundedAt: DateTime
+  pointSaved: Int
+  receiptNumber: String!
+  charges: [Charge]
+  items: [OrderItem!]!
+}
+
+type PointHistory {
+  id: ID!
+  storeId: ID!
+  store: Store!
+  locationId: ID!
+  location: Location!
+  storeCustomerId: ID!
+  globalCustomerId: ID!
+  type: String!
+  point: Int!
+  note: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type PointHistoriesOutput {
+  data: [PointHistory!]!
+  nextCursor: ID
+}
+
+type Board {
+  id: ID!
+  type: String!
+  title: String!
+  content: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  reservedAt: DateTime!
+}
+
 type Query {
   healthCheck: Boolean!
   getUserAccountsByPhone(phone: String!): [UserAccount!]!
@@ -117,9 +349,17 @@ type Query {
   getBanners: [Banner!]!
   getGlobalCustomerByPhone(phone: String!): GlobalCustomer!
   getStoreCustomerByPhone(phone: String!): StoreCustomer!
-  getStoreCustomerById(id: Float!): StoreCustomer!
-  getStoreCustomerByUserId(userId: Int!): StoreCustomer!
-  getCouponsByGlobalCustomerId(customerId: Int!): [Coupon!]!
+  getStoreCustomerById(id: ID!): StoreCustomer!
+  getCouponsByGlobalCustomerId(customerId: ID!): [Coupon!]!
+  getLocationById(id: ID!): Location!
+  getStoreById(id: ID!): Store!
+  getPaidOrdersByCustomerId(customerId: ID!): [Order!]!
+  getRecentOrdersByCustomerId(customerId: ID!): [Order!]!
+  getOrderById(id: ID!): Order!
+  getTotalPointByUserId(userId: ID!): Int!
+  getPointHistoriesByGlobalCustomerId(globalCustomerId: ID!, page: Int!, size: Int!, filters: JSON): PointHistoriesOutput!
+  getBoards: [Board!]!
+  getBoardById(id: ID!): Board!
   getAuthenticationToken(phone: String!): Payload!
 }
 
@@ -148,10 +388,9 @@ input UserAccountInput {
 
 input BannerInput {
   id: ID!
-  storeId: ID!
   order: Int!
   imageUrl: String!
-  boardId: ID
+  linkUrl: ID
   createdAt: DateTime!
   updatedAt: DateTime!
   reservedAt: DateTime

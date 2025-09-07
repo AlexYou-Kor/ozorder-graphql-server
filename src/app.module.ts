@@ -3,6 +3,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import GraphQLJSON from 'graphql-type-json';
 
 import { LoggerMiddleware } from './logger.middleware';
 
@@ -16,6 +17,12 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { GlobalCustomerModule } from './globalCustomer/globalCustomer.module';
 import { StoreCustomerModule } from './storeCustomer/storeCustomer.module';
 import { CouponModule } from './coupon/coupon.module';
+import { LocationModule } from './location/location.module';
+import { LoyaltyModule } from './loyalty/loyalty.module';
+import { StoreModule } from './store/store.module';
+import { OrderModule } from './order/order.module';
+import { PointHistoryModule } from './pointHistory/pointHistory.module';
+import { BoardModule } from './board/board.module';
 
 @Module({
   imports: [
@@ -23,6 +30,9 @@ import { CouponModule } from './coupon/coupon.module';
       driver: ApolloDriver,
       graphiql: true,
       autoSchemaFile: join(process.cwd(), 'schema.gql'),
+      resolvers: {
+        JSON: GraphQLJSON,
+      },
     }),
     CommonModule,
     UserAccountModule,
@@ -32,6 +42,12 @@ import { CouponModule } from './coupon/coupon.module';
     GlobalCustomerModule,
     StoreCustomerModule,
     CouponModule,
+    LocationModule,
+    LoyaltyModule,
+    StoreModule,
+    OrderModule,
+    PointHistoryModule,
+    BoardModule,
     AuthenticationModule,
   ],
   providers: [

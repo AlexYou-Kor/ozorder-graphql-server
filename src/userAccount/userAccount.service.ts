@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UserAccount } from './userAccount.model';
+import { UserAccount, UserAccountInput } from './userAccount.model';
 
 @Injectable()
 export class UserAccountService {
@@ -51,7 +51,7 @@ export class UserAccountService {
     return userAccount;
   }
 
-  updateUserAccount(userAccount: UserAccount) {
-    return userAccount;
+  updateUserAccount(userAccount: UserAccountInput) {
+    return userAccount as UserAccount;
   }
 }

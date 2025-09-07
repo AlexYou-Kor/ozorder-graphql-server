@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+
 import { GlobalCustomer } from './globalCustomer.model';
 
 @Injectable()

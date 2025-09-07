@@ -1,14 +1,6 @@
-import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
+
 import { GlobalCustomer } from 'src/globalCustomer/globalCustomer.model';
-
-@ObjectType()
-export class CustomerPoint {
-  @Field(() => Int)
-  saved: number;
-
-  @Field(() => Int)
-  used: number;
-}
 
 @ObjectType()
 export class LocationCustomer {
@@ -20,9 +12,6 @@ export class LocationCustomer {
 
   @Field({ nullable: true })
   note?: string;
-
-  @Field()
-  point: CustomerPoint;
 
   @Field()
   registeredAt: Date;
@@ -50,10 +39,6 @@ export class StoreCustomer {
 
   @Field(() => ID)
   locationId: number;
-
-  // TOTAL
-  @Field()
-  point: CustomerPoint;
 
   @Field(() => [LocationCustomer])
   locations: LocationCustomer[];

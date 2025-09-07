@@ -1,4 +1,4 @@
-import { Args, Int, Query, Resolver } from '@nestjs/graphql';
+import { Args, ID, Query, Resolver } from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 
 import { AuthGuard } from 'src/authentication/authentication.guard';
@@ -19,17 +19,8 @@ export class StoreCustomerResolver {
   }
 
   @Query(() => StoreCustomer)
-  getStoreCustomerById(@Args({ name: 'id' }) id: number) {
+  getStoreCustomerById(@Args({ name: 'id', type: () => ID }) id: number) {
     const storeCustomer = this.storeCustomerService.getStoreCustomerById(id);
-    return storeCustomer;
-  }
-
-  @Query(() => StoreCustomer)
-  getStoreCustomerByUserId(
-    @Args({ name: 'userId', type: () => Int }) userId: number,
-  ) {
-    const storeCustomer =
-      this.storeCustomerService.getStoreCustomerByUserId(userId);
     return storeCustomer;
   }
 }
