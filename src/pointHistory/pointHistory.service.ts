@@ -3,8 +3,6 @@ import * as dateFns from 'date-fns';
 
 import { GlobalCustomerService } from 'src/globalCustomer/globalCustomer.service';
 import { PointHistory } from './pointHistory.model';
-import { Store } from 'src/store/store.model';
-import { Location } from 'src/location/location.model';
 
 @Injectable()
 export class PointHistoryService {
@@ -41,59 +39,12 @@ export class PointHistoryService {
       endDate?: Date;
     },
   ) {
-    const store = {
-      id: 1,
-      name: '해피마켓',
-      phone: '01054030883',
-      email: 'dkdn1004@naver.com',
-      representative: '유인섭',
-      businessNumber: '123123123123',
-      address: '경기 수원시 영통구 영통로 90번길',
-      zip: '123',
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    } as Store;
-    const location = {
-      id: 1,
-      storeId: 1,
-      name: '망포역점',
-      phone: '01054030883',
-      email: 'dkdn1004@naver.com',
-      representative: '유인섭',
-      businessHour: {
-        id: 1,
-        locationId: 1,
-        sun: { start: '10:00', end: '21:00' },
-        mon: { start: '10:00', end: '21:00' },
-        tue: { start: '10:00', end: '20:00' },
-        wed: { start: '10:00', end: '21:00' },
-        thu: { start: '10:00', end: '21:00' },
-        fri: { start: '10:00', end: '21:00' },
-        sat: { start: '10:00', end: '19:00' },
-      },
-      businessNumber: '123123123123',
-      address: '경기 수원시 영통구 영통로 90번길',
-      zip: '231',
-      lat: 23.894,
-      lng: 123.3299,
-      seat: 7,
-      parking: 10,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    } as Location;
     const histories: PointHistory[] = [
       {
         id: 1,
         storeId: 2,
-        store: {
-          ...store,
-          name: '해피슈퍼마켓',
-        },
         locationId: 1,
-        location: {
-          ...location,
-          name: '망포역',
-        },
+        orderId: 1,
         storeCustomerId: 1,
         globalCustomerId,
         type: 'saved',
@@ -105,23 +56,8 @@ export class PointHistoryService {
       {
         id: 2,
         storeId: 1,
-        store: {
-          id: 1,
-          phone: '01054030883',
-          email: 'dkdn1004@naver.com',
-          representative: '유인섭',
-          businessNumber: '123123123123',
-          address: '경기 수원시 영통구 영통로 90번길',
-          zip: '123',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-          name: '달콤',
-        },
         locationId: 2,
-        location: {
-          ...location,
-          name: '서현역',
-        },
+        orderId: 2,
         storeCustomerId: 3,
         globalCustomerId,
         type: 'used',
@@ -132,23 +68,8 @@ export class PointHistoryService {
       {
         id: 3,
         storeId: 2,
-        store: {
-          name: '달콤',
-          id: 1,
-          phone: '01054030883',
-          email: 'dkdn1004@naver.com',
-          representative: '유인섭',
-          businessNumber: '123123123123',
-          address: '경기 수원시 영통구 영통로 90번길',
-          zip: '123',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
         locationId: 3,
-        location: {
-          ...location,
-          name: '망포역',
-        },
+        orderId: 3,
         storeCustomerId: 1,
         globalCustomerId,
         type: 'saved',
@@ -159,23 +80,8 @@ export class PointHistoryService {
       {
         id: 4,
         storeId: 3,
-        store: {
-          name: 'CU',
-          id: 1,
-          phone: '01054030883',
-          email: 'dkdn1004@naver.com',
-          representative: '유인섭',
-          businessNumber: '123123123123',
-          address: '경기 수원시 영통구 영통로 90번길',
-          zip: '123',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
         locationId: 4,
-        location: {
-          ...location,
-          name: 'ㅎㅎ점',
-        },
+        orderId: 4,
         storeCustomerId: 2,
         globalCustomerId,
         type: 'used',
@@ -186,23 +92,8 @@ export class PointHistoryService {
       {
         id: 5,
         storeId: 4,
-        store: {
-          name: 'GS25',
-          id: 1,
-          phone: '01054030883',
-          email: 'dkdn1004@naver.com',
-          representative: '유인섭',
-          businessNumber: '123123123123',
-          address: '경기 수원시 영통구 영통로 90번길',
-          zip: '123',
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
         locationId: 5,
-        location: {
-          ...location,
-          name: '영통역점',
-        },
+        orderId: 5,
         storeCustomerId: 3,
         globalCustomerId,
         type: 'saved',

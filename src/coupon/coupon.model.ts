@@ -21,6 +21,9 @@ export class Coupon {
   name: string;
 
   @Field({ nullable: true })
+  description?: string;
+
+  @Field({ nullable: true })
   barcode?: string;
 
   @Field()
@@ -49,6 +52,9 @@ export class Coupon {
 
   @Field(() => ID, { nullable: true })
   applyItemId?: number;
+
+  @Field({ nullable: true })
+  note?: string;
 
   @Field({ nullable: true })
   startDate?: Date;

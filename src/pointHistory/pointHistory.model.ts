@@ -1,8 +1,5 @@
 import { Field, ID, Int, ObjectType } from '@nestjs/graphql';
 
-import { Store } from 'src/store/store.model';
-import { Location } from 'src/location/location.model';
-
 @ObjectType()
 export class PointHistory {
   @Field(() => ID)
@@ -11,14 +8,11 @@ export class PointHistory {
   @Field(() => ID)
   storeId: number;
 
-  @Field()
-  store: Store;
-
   @Field(() => ID)
   locationId: number;
 
-  @Field()
-  location: Location;
+  @Field(() => ID, { nullable: true })
+  orderId?: number;
 
   @Field(() => ID)
   storeCustomerId: number;
